@@ -14,6 +14,7 @@ const InputForm: FC<InputFormProps> = () => (
       <InputFormGroup name="TOTAL ANNUAL INCOME (A)" />
       <br />
       <hr />
+      <br />
       <h2>DEDUCTIONS</h2>
       <h3>UNDER SECTION 80</h3>
       <h3>80C (B)</h3>
@@ -72,6 +73,7 @@ const InputForm: FC<InputFormProps> = () => (
     <h1 className="finalValue">VALUE</h1>
     <h2>TAX PAYABLE AS PER NEW REGIME</h2>
     <h1 className="finalValue">VALUE</h1>
+    <div style={{height:"300px"}}></div>
   </div>
 );
 
