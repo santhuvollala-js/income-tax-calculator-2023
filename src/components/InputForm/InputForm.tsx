@@ -8,10 +8,10 @@ interface InputFormProps {}
 const InputForm: FC<InputFormProps> = () => (
   <div className={styles.InputForm} data-testid="InputForm">
     <Form>
-      <InputFormGroup name="NAME" />
-      <InputFormGroup name="AGE" />
-      <InputFormGroup name="PARENTS AGE" />
-      <InputFormGroup name="TOTAL ANNUAL INCOME (A)" />
+      <InputFormGroup name="NAME" placeholderValue=""/>
+      <InputFormGroup name="AGE" placeholderValue=""/>
+      <InputFormGroup name="PARENTS AGE" placeholderValue=""/>
+      <InputFormGroup name="TOTAL ANNUAL INCOME (A)" placeholderValue="0.00"/>
       <br />
       <hr />
       <br />
@@ -19,39 +19,39 @@ const InputForm: FC<InputFormProps> = () => (
       <h3>UNDER SECTION 80</h3>
       <h3>80C (B)</h3>
       <br />
-      <InputFormGroup name="LIFE INSURANCE PREMIUM" />
-      <InputFormGroup name="UNIT LINKED INSURANCE" />
-      <InputFormGroup name="ELSS" />
-      <InputFormGroup name="CHILDREN TUITION FEE" />
-      <InputFormGroup name="EPF / NPS" />
-      <InputFormGroup name="PPF" />
-      <InputFormGroup name="CONTRIBUTION TO SSY" />
-      <InputFormGroup name="TAX SAVING FD" />
-      <InputFormGroup name="NSC" />
-      <InputFormGroup name="PRINCIPAL ON HOME LOAN" />
+      <InputFormGroup name="LIFE INSURANCE PREMIUM" placeholderValue="0.00"/>
+      <InputFormGroup name="UNIT LINKED INSURANCE" placeholderValue="0.00"/>
+      <InputFormGroup name="ELSS" placeholderValue="0.00"/>
+      <InputFormGroup name="CHILDREN TUITION FEE" placeholderValue="0.00"/>
+      <InputFormGroup name="EPF / NPS" placeholderValue="0.00"/>
+      <InputFormGroup name="PPF" placeholderValue="0.00"/>
+      <InputFormGroup name="CONTRIBUTION TO SSY" placeholderValue="0.00"/>
+      <InputFormGroup name="TAX SAVING FD" placeholderValue="0.00"/>
+      <InputFormGroup name="NSC" placeholderValue="0.00"/>
+      <InputFormGroup name="PRINCIPAL ON HOME LOAN" placeholderValue="0.00"/>
       {/* RESULT */}
-      <InputFormGroup name="GROSS TOTAL  (B)" />
+      <InputFormGroup name="GROSS TOTAL  (B)" placeholderValue="0.00"/>
       <br />
-      <InputFormGroup name="NPS 80CCD(1B)  (C)" />
+      <InputFormGroup name="NPS 80CCD(1B)  (C)" placeholderValue="0.00"/>
       <br />
       {/* RESULT */}
-      <InputFormGroup name="NET DEDUCTIONS UNDER SEC 80C (B+C)" />
+      <InputFormGroup name="NET DEDUCTIONS UNDER SEC 80C (B+C)" placeholderValue="0.00"/>
       <br />
-      <InputFormGroup name="SECTION 80GG HRA  (D)" />
-      <InputFormGroup name="SEC 80E INTEREST ON EDUCATION LOAN  (E)" />
-      <InputFormGroup name="SEC 80EEA INTEREST ON HOME LOAN  (F)" />
+      <InputFormGroup name="SECTION 80GG HRA  (D)" placeholderValue="0.00"/>
+      <InputFormGroup name="SEC 80E INTEREST ON EDUCATION LOAN  (E)" placeholderValue="0.00"/>
+      <InputFormGroup name="SEC 80EEA INTEREST ON HOME LOAN  (F)" placeholderValue="0.00"/>
       <br />
       <h3>SECTION 80D (G)</h3>
-      <InputFormGroup name="1. HEALTH INSURANCE FOR SELF" />
-      <InputFormGroup name="2. HEALTH INSURANCE FOR PARENTS" />
+      <InputFormGroup name="1. HEALTH INSURANCE FOR SELF" placeholderValue="0.00"/>
+      <InputFormGroup name="2. HEALTH INSURANCE FOR PARENTS" placeholderValue="0.00"/>
       {/* RESULT */}
-      <InputFormGroup name="TOTAL DEDUCTION UNDER 80D  (G)" />
+      <InputFormGroup name="TOTAL DEDUCTION UNDER 80D  (G)" placeholderValue="0.00"/>
       <br />
-      <InputFormGroup name="SECTION 24B HOME LOAN INTEREST  (H)" />
-      <InputFormGroup name="SECTION 80EEB INTEREST ON EV  (I)" />
-      <InputFormGroup name="STANDARD DEDUCTION  (J)" />
-      <InputFormGroup name="LTA  SECTION 10(5)  (K)" />
-      <InputFormGroup name="OTHERS  (L)" />
+      <InputFormGroup name="SECTION 24B HOME LOAN INTEREST  (H)" placeholderValue="0.00"/>
+      <InputFormGroup name="SECTION 80EEB INTEREST ON EV  (I)" placeholderValue="0.00"/>
+      <InputFormGroup name="STANDARD DEDUCTION  (J)" placeholderValue="0.00"/>
+      <InputFormGroup name="LTA  SECTION 10(5)  (K)" placeholderValue="0.00"/>
+      <InputFormGroup name="OTHERS  (L)" placeholderValue="0.00"/>
       <Button color="success" size="lg">
         Calculate
       </Button>
@@ -61,9 +61,9 @@ const InputForm: FC<InputFormProps> = () => (
       <br />
       <br />
       {/* RESULT */}
-      <InputFormGroup name="TOTAL DEDUCTIONS (M) (B+C+D+E+F+G+H+I+J+K+L)" />
+      <InputFormGroup name="TOTAL DEDUCTIONS (M) (B+C+D+E+F+G+H+I+J+K+L)" placeholderValue="0.00"/>
       {/* RESULT */}
-      <InputFormGroup name="NET TAXABLE INCOME  (A-M)" />
+      <InputFormGroup name="NET TAXABLE INCOME  (A-M)" placeholderValue="0.00"/>
     </Form>
     <br />
     <hr />

@@ -5,7 +5,7 @@ export default {
   title: "InputFormGroup",
 };
 
-export const Default = () => <InputFormGroup name={''} />;
+export const Default = () => <InputFormGroup name={''} placeholderValue={''} />;
 
 Default.story = {
   name: 'default',

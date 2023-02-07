@@ -5,7 +5,7 @@ import InputFormGroup from './InputFormGroup';
 
 describe('<InputFormGroup />', () => {
   test('it should mount', () => {
-    render(<InputFormGroup name={''} />);
+    render(<InputFormGroup name={''} placeholderValue={''} />);
     
     const inputFormGroup = screen.getByTestId('InputFormGroup');
 
