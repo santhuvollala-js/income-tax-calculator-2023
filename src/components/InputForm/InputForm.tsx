@@ -15,7 +15,7 @@ const InputForm: FC<InputFormProps> = () => (
       <br />
       <hr />
       <br />
-      <h2>DEDUCTIONS</h2>
+      <h2>Enter Your Investments</h2>
       <h3>UNDER SECTION 80</h3>
       <h3>80C (B)</h3>
       <br />
