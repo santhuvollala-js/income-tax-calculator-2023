@@ -37,14 +37,6 @@ const InputForm: FC<InputFormProps> = () => {
     uli, elss, tuition, epf, ppf, ssy, fd, nsc, pHomeLoan, 
     nps, hra, edu, iHomeLoan, sIns, pIns, iHomeLoan24B, ev, sDed, lta, others } = data;
 
-  // const grossTotalB = 0;
-  // const total80C = 0;
-  // const total80D = 0;
-  // const totalDed = 0;
-  // const netTaxableIncome = 0;
-  // const oldRegimeTaxAmount = 0;
-  // const newRegimeTaxAmount = 0;
-
   const [grossTotalB, setGrossTotalB]               = useState(0);
   const [total80C, setTotal80C]                     = useState(0);
   const [total80D, setTotal80D]                     = useState(0);
@@ -59,7 +51,9 @@ const InputForm: FC<InputFormProps> = () => {
 
   const handleFinalSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const totalB =
+
+    // Section 80C Calculations
+    let totalB =
       Number(lic) +
       Number(uli) +
       Number(elss) +
@@ -71,13 +65,29 @@ const InputForm: FC<InputFormProps> = () => {
       Number(nsc) +
       Number(pHomeLoan);
 
+    totalB = totalB >= 150000 ? 150000 : totalB;
+
     const bPlusC = totalB + (Number(nps) >= 50000 ? 50000 : Number(nps));
-    
+
+    // Section 80D Calculations
+    const maxSelfHealthIns = ( Number(age) < 60 ? 25000 : 50000 );
+    const maxParentsHealthIns = ( Number(parentsAge) < 60 ? 25000 : 50000 );
+    const selfHealthInsEntered = ( Number(sIns) > maxSelfHealthIns ? maxSelfHealthIns : Number(sIns) );
+    const parentsHealthInsEntered = ( Number(pIns) > maxParentsHealthIns ? maxParentsHealthIns : Number(sIns) );
+
+    const totalDeductions = bPlusC + Number(hra) + Number(edu) + Number(iHomeLoan) + 
+    selfHealthInsEntered + parentsHealthInsEntered + Number(iHomeLoan24B) + 
+    Number(ev) + Number(sDed) + Number(lta) + Number(others);
+
+    console.log("totalHelathIns considered is: " + selfHealthInsEntered);
+    console.log("maxTotalHealthIns considered is: " + parentsHealthInsEntered);
     console.log("Total 80C: " + totalB);
     console.log("Total 80C + NPS: " + bPlusC);
-    setGrossTotalB(totalB >= 150000 ? 150000 : totalB);
+    setGrossTotalB(totalB);
     setTotal80C(bPlusC);
-    // console.log(data);
+    setTotal80D(selfHealthInsEntered + parentsHealthInsEntered);
+    setTotalDed(totalDeductions);
+    setNetTaxableIncome(Number(totalIncome) - totalDeductions);
   };
 
   return (
@@ -89,10 +99,12 @@ const InputForm: FC<InputFormProps> = () => {
         </FormGroup>
         <FormGroup>
           <Label for="ageID">AGE</Label>
+          <p>* Mandatory, if you are claiming under section 80D - Health Insurance</p>
           <Input id="ageID" name="age" onChange={handleInputChange} value={age} />
         </FormGroup>
         <FormGroup>
           <Label for="pAgeID">PARENTS AGE</Label>
+          <p>* Mandatory, if you are claiming under section 80D - Health Insurance</p>
           <Input id="pAgeID" name="parentsAge" onChange={handleInputChange} value={parentsAge} />
         </FormGroup>
         <FormGroup>
@@ -146,7 +158,8 @@ const InputForm: FC<InputFormProps> = () => {
         <FormGroup>
           <Label for="pHomeLoanID">PRINCIPAL ON HOME LOAN</Label>
           <Input id="pHomeLoanID" name="pHomeLoan" placeholder="0.00" onChange={handleInputChange} value={pHomeLoan} />
-        </FormGroup>        
+        </FormGroup>     
+        <br />   
         <span className="resultKey">GROSS TOTAL 80C (B)</span><span className="resultValue">{grossTotalB}</span>
         <p>* Maximum of 150000/- is considered under section 80C</p>
         <br />
@@ -182,6 +195,7 @@ const InputForm: FC<InputFormProps> = () => {
           <Label for="pInsID">2. HEALTH INSURANCE FOR PARENTS</Label>
           <Input id="pInsID" name="pIns" placeholder="0.00" onChange={handleInputChange} value={pIns} />
         </FormGroup>
+        <br />
         <span className="resultKey">TOTAL DEDUCTION UNDER 80D  (G)</span><span className="resultValue">{total80D}</span>
         <br />
         <br />
