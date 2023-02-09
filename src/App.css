@@ -7,9 +7,9 @@
 .resultValue {
   font-size: xx-large;
   font-weight: bolder;
-  color: brown;
+  color: red;
   margin-left: 5%;
   padding: 5px;
-  border: 1px solid brown;
+  border: 1px solid red;
   border-radius: 10px;
 }

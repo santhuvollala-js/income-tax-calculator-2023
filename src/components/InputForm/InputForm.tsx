@@ -5,6 +5,7 @@ import { Form, Button, FormGroup, Label, Input } from "reactstrap";
 interface InputFormProps {}
 
 const InputForm: FC<InputFormProps> = () => {
+
   const [data, setData] = useState({
     name: "",
     age: "",
@@ -45,12 +46,21 @@ const InputForm: FC<InputFormProps> = () => {
   const [oldRegimeTaxAmount, setOldRegimeTaxAmount] = useState(0);
   const [newRegimeTaxAmount, setNewRegimeTaxAmount] = useState(0);
 
+  const percentage = (num:number, per:number) => (num / 100) * per;
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData({...data, [event.target.name]:[event.target.value]});
   }
 
   const handleFinalSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const ageEntered = Number(age);
+    const totalIncomeEntered = Number(totalIncome);
+    const twoHalfLakhs = 250000;
+    const fiveLakhs = 500000;
+    const tenLakhs = 1000000;
+    const fifteenLakhs = 1500000;
 
     // Section 80C Calculations
     let totalB =
@@ -70,7 +80,7 @@ const InputForm: FC<InputFormProps> = () => {
     const bPlusC = totalB + (Number(nps) >= 50000 ? 50000 : Number(nps));
 
     // Section 80D Calculations
-    const maxSelfHealthIns = ( Number(age) < 60 ? 25000 : 50000 );
+    const maxSelfHealthIns = ( ageEntered < 60 ? 25000 : 50000 );
     const maxParentsHealthIns = ( Number(parentsAge) < 60 ? 25000 : 50000 );
     const selfHealthInsEntered = ( Number(sIns) > maxSelfHealthIns ? maxSelfHealthIns : Number(sIns) );
     const parentsHealthInsEntered = ( Number(pIns) > maxParentsHealthIns ? maxParentsHealthIns : Number(sIns) );
@@ -87,7 +97,55 @@ const InputForm: FC<InputFormProps> = () => {
     setTotal80C(bPlusC);
     setTotal80D(selfHealthInsEntered + parentsHealthInsEntered);
     setTotalDed(totalDeductions);
-    setNetTaxableIncome(Number(totalIncome) - totalDeductions);
+    const totalTaxableAmount = totalIncomeEntered - totalDeductions;
+    setNetTaxableIncome(totalTaxableAmount);
+
+    // OLD Regime Calculations
+    let oldTaxAmountCalculated = 0;
+    if (ageEntered < 60) {    //Non Senior Citizen
+      if (totalTaxableAmount > tenLakhs) {
+        oldTaxAmountCalculated = ( (percentage( (totalTaxableAmount - tenLakhs), 30 )) + 112500 );
+      } else if(totalTaxableAmount > fiveLakhs && totalTaxableAmount <= tenLakhs) {
+        oldTaxAmountCalculated = ( (percentage( (totalTaxableAmount - fiveLakhs), 20 )) + 12500 );
+      } else if(totalTaxableAmount > twoHalfLakhs && totalTaxableAmount <= fiveLakhs) {
+        oldTaxAmountCalculated = ( (percentage( (totalTaxableAmount - twoHalfLakhs), 5 )) );
+      } else {
+        oldTaxAmountCalculated = 0;
+      }
+    } else {  // Senior Citizen - Rebate of 12500/- on income till 5L 
+      if (totalTaxableAmount > tenLakhs) {
+        oldTaxAmountCalculated = ( (percentage( (totalTaxableAmount - tenLakhs), 30 )) + 110000 );
+      } else if(totalTaxableAmount > fiveLakhs && totalTaxableAmount <= tenLakhs) {
+        oldTaxAmountCalculated = ( (percentage( (totalTaxableAmount - fiveLakhs), 20 )) + 10000 );
+      } else {
+        oldTaxAmountCalculated = 0;
+      }
+    }
+
+    const oldTaxPlusCess = oldTaxAmountCalculated + percentage(oldTaxAmountCalculated, 4);
+
+    setOldRegimeTaxAmount(oldTaxPlusCess);
+
+    // NEW Regime Calculations
+    let newTaxAmountCalculated = 0;
+    if (totalIncomeEntered > fifteenLakhs) {
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - fifteenLakhs), 30 )) + 150000 );
+    } else if(totalIncomeEntered > 1200000 && totalIncomeEntered <= fifteenLakhs) {
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 1200000), 20 )) + 90000 );
+    } else if(totalIncomeEntered > 900000 && totalIncomeEntered <= 1200000) {
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 900000), 15 )) + 45000 );
+    } else if(totalIncomeEntered > 600000 && totalIncomeEntered <= 900000) {
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 600000), 10 )) + 15000 );
+    } else if(totalIncomeEntered > 300000 && totalIncomeEntered <= 600000) {
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - twoHalfLakhs), 5 )) );
+    } else {
+      newTaxAmountCalculated = (0);
+    }
+
+    const newTaxPlusCess = newTaxAmountCalculated + percentage(newTaxAmountCalculated, 4);
+
+    setNewRegimeTaxAmount(newTaxPlusCess);
+
   };
 
   return (
