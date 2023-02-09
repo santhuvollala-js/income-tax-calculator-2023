@@ -218,7 +218,9 @@ const InputForm: FC<InputFormProps> = () => {
           <Input id="pHomeLoanID" name="pHomeLoan" placeholder="0.00" onChange={handleInputChange} value={pHomeLoan} />
         </FormGroup>     
         <br />   
-        <span className="resultKey">GROSS TOTAL 80C (B)</span><span className="resultValue">{grossTotalB}</span>
+        <span className="resultKey">GROSS TOTAL 80C (B)</span>
+        <span className="resultValue">
+        &#8377;{grossTotalB.toLocaleString('en-IN', {maximumFractionDigits:2})}</span>
         <p>* Maximum of 150000/- is considered under section 80C</p>
         <br />
         <br />
@@ -228,7 +230,9 @@ const InputForm: FC<InputFormProps> = () => {
           <Input id="npsID" name="nps" placeholder="0.00" onChange={handleInputChange} value={nps} />
         </FormGroup>
         <br />
-        <span className="resultKey">NET DEDUCTIONS UNDER SEC 80C (B+C)</span><span className="resultValue">{total80C}</span>      
+        <span className="resultKey">NET DEDUCTIONS UNDER SEC 80C (B+C)</span>
+        <span className="resultValue">
+        &#8377;{total80C.toLocaleString('en-IN', {maximumFractionDigits:2})}</span>      
         <br />
         <br />
         <FormGroup>
@@ -254,7 +258,9 @@ const InputForm: FC<InputFormProps> = () => {
           <Input id="pInsID" name="pIns" placeholder="0.00" onChange={handleInputChange} value={pIns} />
         </FormGroup>
         <br />
-        <span className="resultKey">TOTAL DEDUCTION UNDER 80D  (G)</span><span className="resultValue">{total80D}</span>
+        <span className="resultKey">TOTAL DEDUCTION UNDER 80D  (G)</span>
+        <span className="resultValue">
+        &#8377;{total80D.toLocaleString('en-IN', {maximumFractionDigits:2})}</span>
         <br />
         <br />
         <FormGroup>
@@ -285,19 +291,23 @@ const InputForm: FC<InputFormProps> = () => {
         </Button>
         <br />
         <br />
-        <span className="resultKey">TOTAL DEDUCTIONS (M) (B+C+D+E+F+G+H+I+J+K+L)</span><span className="resultValue">{totalDed}</span>
+        <span className="resultKey">TOTAL DEDUCTIONS (M) (B+C+D+E+F+G+H+I+J+K+L)</span>
+        <span className="resultValue">
+        &#8377;{totalDed.toLocaleString('en-IN', {maximumFractionDigits:2})}</span>
         <br />
         <br />
-        <span className="resultKey">NET TAXABLE INCOME  (A-M)</span><span className="resultValue">{netTaxableIncome}</span>
+        <span className="resultKey">NET TAXABLE INCOME  (A-M)</span>
+        <span className="resultValue">
+        &#8377;{netTaxableIncome.toLocaleString('en-IN', {maximumFractionDigits:2})}</span>
       </Form>
       <br />
       <hr />
       <br />
       <br />
       <h2>TAX PAYABLE AS PER OLD REGIME</h2>
-      <h1 className="finalValue">{oldRegimeTaxAmount}</h1>
+      <h1 className="finalValue">&#8377;{oldRegimeTaxAmount.toLocaleString('en-IN', {maximumFractionDigits:2})}</h1>
       <h2>TAX PAYABLE AS PER NEW REGIME</h2>
-      <h1 className="finalValue">{newRegimeTaxAmount}</h1>
+      <h1 className="finalValue">&#8377;{newRegimeTaxAmount.toLocaleString('en-IN', {maximumFractionDigits:2})}</h1>
       <div style={{ height: "300px" }}></div>
     </div>
   );
