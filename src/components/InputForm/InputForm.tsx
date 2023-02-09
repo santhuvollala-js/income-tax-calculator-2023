@@ -70,6 +70,7 @@ const InputForm: FC<InputFormProps> = () => {
 
     const ageEntered = Number(age);
     const totalIncomeEntered = Number(totalIncome);
+    const oneAndHalfLakhs = 150000;
     const twoHalfLakhs = 250000;
     const fiveLakhs = 500000;
     const tenLakhs = 1000000;
@@ -88,7 +89,7 @@ const InputForm: FC<InputFormProps> = () => {
       Number(nsc) +
       Number(pHomeLoan);
 
-    totalB = totalB >= 150000 ? 150000 : totalB;
+    totalB = totalB >= oneAndHalfLakhs ? oneAndHalfLakhs : totalB;
 
     const bPlusC = totalB + (Number(nps) >= 50000 ? 50000 : Number(nps));
 
@@ -98,9 +99,9 @@ const InputForm: FC<InputFormProps> = () => {
     const selfHealthInsEntered = ( Number(sIns) > maxSelfHealthIns ? maxSelfHealthIns : Number(sIns) );
     const parentsHealthInsEntered = ( Number(pIns) > maxParentsHealthIns ? maxParentsHealthIns : Number(sIns) );
 
-    const totalDeductions = bPlusC + Number(hra) + Number(edu) + ( Number(iHomeLoan) > 150000 ? 150000 : Number(iHomeLoan) ) + 
+    const totalDeductions = bPlusC + Number(hra) + Number(edu) + ( Number(iHomeLoan) > oneAndHalfLakhs ? oneAndHalfLakhs : Number(iHomeLoan) ) + 
     selfHealthInsEntered + parentsHealthInsEntered + ( Number(iHomeLoan24B) > 200000 ? 200000 : Number(iHomeLoan24B) ) + 
-    ( Number(ev) > 150000 ? 150000 : Number(ev) ) + Number(sDed) + 
+    ( Number(ev) > oneAndHalfLakhs ? oneAndHalfLakhs : Number(ev) ) + Number(sDed) + 
     ( Number(lta) > 20000 ? 20000 : Number(lta) ) + Number(others);
 
     console.log("totalHelathIns considered is: " + selfHealthInsEntered);
@@ -143,7 +144,7 @@ const InputForm: FC<InputFormProps> = () => {
     // NEW Regime Calculations
     let newTaxAmountCalculated = 0;
     if (totalIncomeEntered > fifteenLakhs) {
-      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - fifteenLakhs), 30 )) + 150000 );
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - fifteenLakhs), 30 )) + oneAndHalfLakhs );
     } else if(totalIncomeEntered > 1200000 && totalIncomeEntered <= fifteenLakhs) {
       newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 1200000), 20 )) + 90000 );
     } else if(totalIncomeEntered > 900000 && totalIncomeEntered <= 1200000) {
@@ -236,12 +237,12 @@ const InputForm: FC<InputFormProps> = () => {
         <span className="resultKey">GROSS TOTAL 80C (B)</span>
         <span className="resultValue">
         &#8377;{grossTotalB.toLocaleString('en-IN', {maximumFractionDigits:2})}</span>
-        <p>* Maximum of 150000/- is considered under section 80C</p>
+        <p>* Maximum of 1,50,000/- is considered under section 80C</p>
         <br />
         <br />
         <FormGroup>
           <Label for="npsID">NPS 80CCD(1B)  (C)</Label>
-          <p>* Maximum of 50000/- NPS amount is considered under section 80CCD(1B)</p>
+          <p>* Maximum of 50,000/- NPS amount is considered under section 80CCD(1B)</p>
           <Input id="npsID" name="nps" placeholder="0.00" onChange={handleInputChange} value={nps} />
         </FormGroup>
         <br />
@@ -260,7 +261,7 @@ const InputForm: FC<InputFormProps> = () => {
         </FormGroup>
         <FormGroup>
           <Label for="iHomeLoanID">SEC 80EEA INTEREST ON HOME LOAN  (F)</Label>
-          <p>* Maximum of 150000/- is considered under section 80EEA, if met with the criteria.</p>
+          <p>* Maximum of 1,50,000/- is considered under section 80EEA, if met with the criteria.</p>
           <Input id="iHomeLoanID" name="iHomeLoan" placeholder="0.00" onChange={handleInputChange} value={iHomeLoan} />
         </FormGroup>
         <br />
@@ -281,12 +282,12 @@ const InputForm: FC<InputFormProps> = () => {
         <br />
         <FormGroup>
           <Label for="iHomeLoan24BID">SECTION 24B HOME LOAN INTEREST  (H)</Label>
-          <p>* Maximum of 200000/- is considered under section 24B, if met with the criteria.</p>
+          <p>* Maximum of 2,00,000/- is considered under section 24B, if met with the criteria.</p>
           <Input id="iHomeLoan24BID" name="iHomeLoan24B" placeholder="0.00" onChange={handleInputChange} value={iHomeLoan24B} />
         </FormGroup>
         <FormGroup>
           <Label for="evID">SECTION 80EEB INTEREST ON EV  (I)</Label>
-          <p>* Maximum of 150000/- is considered under section 80EEB.</p>
+          <p>* Maximum of 1,50,000/- is considered under section 80EEB.</p>
           <Input id="evID" name="ev" placeholder="0.00" onChange={handleInputChange} value={ev} />
         </FormGroup>
         <FormGroup>
@@ -295,7 +296,7 @@ const InputForm: FC<InputFormProps> = () => {
         </FormGroup>
         <FormGroup>
           <Label for="ltaID">LTA  SECTION 10(5)  (K)</Label>
-          <p>* Maximum of 20000/- per year is considered under section 10(5).</p>
+          <p>* Maximum of 20,000/- per year is considered under section 10(5).</p>
           <Input id="ltaID" name="lta" placeholder="0.00" onChange={handleInputChange} value={lta} />
         </FormGroup>
         <FormGroup>
