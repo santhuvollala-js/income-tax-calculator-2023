@@ -150,7 +150,7 @@ const InputForm: FC<InputFormProps> = () => {
     } else if(totalIncomeEntered > 900000 && totalIncomeEntered <= 1200000) {
       newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 900000), 15 )) + 45000 );
     } else if(totalIncomeEntered > 700000 && totalIncomeEntered <= 900000) {
-      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 700000), 10 )) + 15000 );
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 600000), 10 )) + 15000 );
     } else {
       newTaxAmountCalculated = (0);
     }
