@@ -149,10 +149,8 @@ const InputForm: FC<InputFormProps> = () => {
       newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 1200000), 20 )) + 90000 );
     } else if(totalIncomeEntered > 900000 && totalIncomeEntered <= 1200000) {
       newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 900000), 15 )) + 45000 );
-    } else if(totalIncomeEntered > 600000 && totalIncomeEntered <= 900000) {
-      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 600000), 10 )) + 15000 );
-    } else if(totalIncomeEntered > 300000 && totalIncomeEntered <= 600000) {
-      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - twoHalfLakhs), 5 )) );
+    } else if(totalIncomeEntered > 700000 && totalIncomeEntered <= 900000) {
+      newTaxAmountCalculated = ( (percentage( (totalIncomeEntered - 700000), 10 )) + 15000 );
     } else {
       newTaxAmountCalculated = (0);
     }
