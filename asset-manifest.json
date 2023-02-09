@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/income-tax-calculator-2023/static/css/main.4775b4ba.css",
+    "main.js": "/income-tax-calculator-2023/static/js/main.078b3595.js",
+    "static/js/787.6d17bfbe.chunk.js": "/income-tax-calculator-2023/static/js/787.6d17bfbe.chunk.js",
+    "index.html": "/income-tax-calculator-2023/index.html",
+    "main.4775b4ba.css.map": "/income-tax-calculator-2023/static/css/main.4775b4ba.css.map",
+    "main.078b3595.js.map": "/income-tax-calculator-2023/static/js/main.078b3595.js.map",
+    "787.6d17bfbe.chunk.js.map": "/income-tax-calculator-2023/static/js/787.6d17bfbe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4775b4ba.css",
+    "static/js/main.078b3595.js"
+  ]
+}
