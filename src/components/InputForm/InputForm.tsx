@@ -98,9 +98,10 @@ const InputForm: FC<InputFormProps> = () => {
     const selfHealthInsEntered = ( Number(sIns) > maxSelfHealthIns ? maxSelfHealthIns : Number(sIns) );
     const parentsHealthInsEntered = ( Number(pIns) > maxParentsHealthIns ? maxParentsHealthIns : Number(sIns) );
 
-    const totalDeductions = bPlusC + Number(hra) + Number(edu) + Number(iHomeLoan) + 
-    selfHealthInsEntered + parentsHealthInsEntered + Number(iHomeLoan24B) + 
-    Number(ev) + Number(sDed) + Number(lta) + Number(others);
+    const totalDeductions = bPlusC + Number(hra) + Number(edu) + ( Number(iHomeLoan) > 150000 ? 150000 : Number(iHomeLoan) ) + 
+    selfHealthInsEntered + parentsHealthInsEntered + ( Number(iHomeLoan24B) > 200000 ? 200000 : Number(iHomeLoan24B) ) + 
+    ( Number(ev) > 150000 ? 150000 : Number(ev) ) + Number(sDed) + 
+    ( Number(lta) > 20000 ? 20000 : Number(lta) ) + Number(others);
 
     console.log("totalHelathIns considered is: " + selfHealthInsEntered);
     console.log("maxTotalHealthIns considered is: " + parentsHealthInsEntered);
@@ -259,6 +260,7 @@ const InputForm: FC<InputFormProps> = () => {
         </FormGroup>
         <FormGroup>
           <Label for="iHomeLoanID">SEC 80EEA INTEREST ON HOME LOAN  (F)</Label>
+          <p>* Maximum of 150000/- is considered under section 80EEA, if met with the criteria.</p>
           <Input id="iHomeLoanID" name="iHomeLoan" placeholder="0.00" onChange={handleInputChange} value={iHomeLoan} />
         </FormGroup>
         <br />
@@ -279,10 +281,12 @@ const InputForm: FC<InputFormProps> = () => {
         <br />
         <FormGroup>
           <Label for="iHomeLoan24BID">SECTION 24B HOME LOAN INTEREST  (H)</Label>
+          <p>* Maximum of 200000/- is considered under section 24B, if met with the criteria.</p>
           <Input id="iHomeLoan24BID" name="iHomeLoan24B" placeholder="0.00" onChange={handleInputChange} value={iHomeLoan24B} />
         </FormGroup>
         <FormGroup>
           <Label for="evID">SECTION 80EEB INTEREST ON EV  (I)</Label>
+          <p>* Maximum of 150000/- is considered under section 80EEB.</p>
           <Input id="evID" name="ev" placeholder="0.00" onChange={handleInputChange} value={ev} />
         </FormGroup>
         <FormGroup>
@@ -291,6 +295,7 @@ const InputForm: FC<InputFormProps> = () => {
         </FormGroup>
         <FormGroup>
           <Label for="ltaID">LTA  SECTION 10(5)  (K)</Label>
+          <p>* Maximum of 20000/- per year is considered under section 10(5).</p>
           <Input id="ltaID" name="lta" placeholder="0.00" onChange={handleInputChange} value={lta} />
         </FormGroup>
         <FormGroup>
