@@ -157,17 +157,18 @@ const InputForm: FC<InputFormProps> = () => {
         </FormGroup>
         <FormGroup>
           <Label for="ageID">AGE</Label>
-          <p>* Mandatory, if you are claiming under section 80D - Health Insurance</p>
-          <Input id="ageID" name="age" onChange={handleInputChange} value={age} />
+          <span className="inputValidation">* Mandatory for calculating tax based on your age.</span>
+          <Input id="ageID" name="age" onChange={handleInputChange} value={age} required/>
         </FormGroup>
         <FormGroup>
           <Label for="pAgeID">PARENTS AGE</Label>
-          <p>* Mandatory, if you are claiming under section 80D - Health Insurance</p>
+          <span className="inputValidation">* Mandatory, if you are claiming under section 80D - Health Insurance</span>
           <Input id="pAgeID" name="parentsAge" onChange={handleInputChange} value={parentsAge} />
         </FormGroup>
         <FormGroup>
           <Label for="tIncomeID">TOTAL ANNUAL INCOME (A)</Label>
-          <Input id="tIncomeID" name="totalIncome" placeholder="0.00" onChange={handleInputChange} value={totalIncome} />
+          <span className="inputValidation">* Total Income field is mandatory.</span>
+          <Input id="tIncomeID" name="totalIncome" placeholder="0.00" onChange={handleInputChange} value={totalIncome} required/>
         </FormGroup>
         <br />
         <hr />
