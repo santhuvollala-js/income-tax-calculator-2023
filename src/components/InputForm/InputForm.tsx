@@ -180,7 +180,7 @@ const InputForm: FC<InputFormProps> = () => {
         </FormGroup>
         <FormGroup>
           <Label for="tIncomeID">TOTAL ANNUAL INCOME (A)</Label>
-          <span className="inputValidation">* Total Income field is mandatory.</span>
+          <span className="inputValidation">* Total Annual Income field is mandatory.</span>
           <Input id="tIncomeID" name="totalIncome" placeholder="0.00" onChange={handleInputChange} value={totalIncome} required/>
         </FormGroup>
         <br />
