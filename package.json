@@ -2,7 +2,7 @@
   "name": "income-tax-calculator-2023",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://santhuvollala-js.github.io/income-tax-calculator-2023",
+  "homepage": "http://santhuvollala-js.github.io/income-tax-calculator-2023",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
