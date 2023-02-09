@@ -6,7 +6,7 @@ interface InputFormProps {}
 
 const InputForm: FC<InputFormProps> = () => {
 
-  const [data, setData] = useState({
+  const inititalState = {
     name: "",
     age: "",
     parentsAge: "",
@@ -32,7 +32,9 @@ const InputForm: FC<InputFormProps> = () => {
     sDed: "",
     lta: "",
     others: ""
-  });
+  };
+
+  const [data, setData] = useState(inititalState);
 
   const { name, age, parentsAge, totalIncome, lic, 
     uli, elss, tuition, epf, ppf, ssy, fd, nsc, pHomeLoan, 
@@ -47,6 +49,17 @@ const InputForm: FC<InputFormProps> = () => {
   const [newRegimeTaxAmount, setNewRegimeTaxAmount] = useState(0);
 
   const percentage = (num:number, per:number) => (num / 100) * per;
+
+  const resetHandler = () => {
+    setData({...inititalState});
+    setGrossTotalB(0);
+    setTotal80C(0);
+    setTotal80D(0);
+    setTotalDed(0);
+    setNetTaxableIncome(0);
+    setOldRegimeTaxAmount(0);
+    setNewRegimeTaxAmount(0);
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setData({...data, [event.target.name]:[event.target.value]});
@@ -287,7 +300,7 @@ const InputForm: FC<InputFormProps> = () => {
         <Button color="success" size="lg" type="submit">
           Calculate
         </Button>
-        <Button style={{ marginLeft: "1%" }} color="warning" size="lg">
+        <Button style={{ marginLeft: "1%" }} color="warning" size="lg" type="reset" onClick={resetHandler}>
           Reset
         </Button>
         <br />
