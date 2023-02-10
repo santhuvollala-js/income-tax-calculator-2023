@@ -39,10 +39,30 @@ const InputForm: FC<InputFormProps> = () => {
   const [collapse80D, setCollapse80D] = useState(false);
   const [collapseOthers, setCollapseOthers] = useState(false);
 
-  const toggle = () => setCollapse(!collapse);
-  const toggleHRA = () => setCoollapseHRA(!collapseHRA);
-  const toggle80D = () => setCollapse80D(!collapse80D);
-  const toggleOthers = () => setCollapseOthers(!collapseOthers);
+  const toggle = () => {
+    setCollapse(!collapse);
+    setCoollapseHRA(false);
+    setCollapse80D(false);
+    setCollapseOthers(false);
+  };
+  const toggleHRA = () => {
+    setCoollapseHRA(!collapseHRA);
+    setCollapse(false);
+    setCollapse80D(false);
+    setCollapseOthers(false);
+  };
+  const toggle80D = () => {
+    setCollapse80D(!collapse80D);
+    setCollapse(false);
+    setCoollapseHRA(false);
+    setCollapseOthers(false);
+  };
+  const toggleOthers = () => {
+    setCollapseOthers(!collapseOthers);
+    setCollapse(false);
+    setCoollapseHRA(false);
+    setCollapse80D(false);
+  };
 
   const {
     name,
