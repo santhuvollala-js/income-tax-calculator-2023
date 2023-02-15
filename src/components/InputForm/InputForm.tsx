@@ -111,6 +111,10 @@ const InputForm: FC<InputFormProps> = () => {
     setNetTaxableIncome(0);
     setOldRegimeTaxAmount(0);
     setNewRegimeTaxAmount(0);
+    setCollapse(false);
+    setCollapse80D(false);
+    setCoollapseHRA(false);
+    setCollapseOthers(false);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

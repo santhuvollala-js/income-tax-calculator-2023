@@ -1,5 +1,5 @@
 .resultKey {
-  font-size: x-large;
+  font-size: medium;
   font-weight: bolder;
   color: green;
 }
@@ -11,7 +11,7 @@
   margin-left: 5%;
   padding: 5px;
   border: 1px solid red;
-  /* border-radius: 10px; */
+  border-radius: 20px;
 }
 
 .inputValidation {
